@@ -10,14 +10,17 @@ import cherrypy
 # humidity = json.loads(hum.text)
 
 def getTemp ():
-    temp = requests.get("https://api.spark.io/v1/devices/***REMOVED***/tempf?access_token=***REMOVED***")
-    tempf = json.loads(temp.text)
-    return str(tempf["result"])
+    requestTemp = requests.get("https://api.spark.io/v1/devices/***REMOVED***/tempf?access_token=***REMOVED***")
+    tempf = json.loads(requestTemp.text)
+    theTemp = "{:.1f}".format(tempf["result"])
+    return theTemp
+    #return str(tempf["result"])
     
 def getHum():
-    hum = requests.get("https://api.spark.io/v1/devices/***REMOVED***/humidity?access_token=***REMOVED***")
-    humidity = json.loads(hum.text)
-    return str(humidity["result"])
+    requestHum = requests.get("https://api.spark.io/v1/devices/***REMOVED***/humidity?access_token=***REMOVED***")
+    humidity = json.loads(requestHum.text)
+    theHumidity = "{:.1f}".format(humidity["result"])
+    return theHumidity
 
 
 class TempPage(object):
@@ -37,7 +40,9 @@ class TempPage(object):
 if __name__ == '__main__':
     cherrypy.config.update(
     {'server.socket_host': '0.0.0.0'} )
+    cherrypy.config.update({'server.socket_port': 8085})
     cherrypy.quickstart(TempPage())
+
     while True:
         getTemp()
         getHumidity()
