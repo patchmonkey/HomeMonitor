@@ -1,14 +1,13 @@
-
-import sleep
+import time
 import requests
 import json
 import cherrypy
 
 
-//temp = requests.get("https://api.spark.io/v1/devices/***REMOVED***/tempf?access_token=***REMOVED***")
-//hum = requests.get("https://api.spark.io/v1/devices/***REMOVED***/humidity?access_token=***REMOVED***")
-//tempf = json.loads(temp.text)
-//humidity = json.loads(hum.text)
+# temp = requests.get("https://api.spark.io/v1/devices/***REMOVED***/tempf?access_token=***REMOVED***")
+# hum = requests.get("https://api.spark.io/v1/devices/***REMOVED***/humidity?access_token=***REMOVED***")
+# tempf = json.loads(temp.text)
+# humidity = json.loads(hum.text)
 
 def getTemp ():
     temp = requests.get("https://api.spark.io/v1/devices/***REMOVED***/tempf?access_token=***REMOVED***")
@@ -18,7 +17,7 @@ def getTemp ():
 def getHum():
     hum = requests.get("https://api.spark.io/v1/devices/***REMOVED***/humidity?access_token=***REMOVED***")
     humidity = json.loads(hum.text)
-    return str(humidity["result])
+    return str(humidity["result"])
 
 
 class TempPage(object):
