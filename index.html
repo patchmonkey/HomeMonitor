@@ -1,20 +1,24 @@
 <html>
 <head></head>
 <body>
-<p id="demo">Click "Try it". Wait 3 seconds. Your page will alert "Hello".</p>
+<h1>Temperature: <div id="temp">00</div></h1>
+<br /> 
+<h1>Humidity: <div id="hum">00</div></h1>
+<button onclick="getTemp()">Try it</button>
+
 <script src="http://code.jquery.com/jquery-1.9.1.js"/><script>
 <script>
     function getTemp() {
-        $.getJSONP("https://api.spark.io/v1/devices/***REMOVED***/tempf?access_token=***REMOVED***", writeTemp(data));
+        $.getJSON("temps.json", function(data) {
+			$("#temp").append(data.temp);
+			//document.getElementById("temp").innerHTML = data.temp;
+			//document.getElementById("hum").innerHTML = data.hum;
     console.log("ok!");
-    }
+    });
 
 
-    function writeTemp(data) {
-        document.getElementById("demo").innerHTML = data;
-    }
 
-    window.setInterval(getTemp(), 3000);
+    setInterval(getTemp(), 3000);
 </script>
 </body>
 </html>
