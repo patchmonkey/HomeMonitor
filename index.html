@@ -4,21 +4,21 @@
 <h1>Temperature: <div id="temp">00</div></h1>
 <br /> 
 <h1>Humidity: <div id="hum">00</div></h1>
-<button onclick="getTemp()">Try it</button>
+<button onclick="getTemp()">Refresh</button>
 
-<script src="http://code.jquery.com/jquery-1.9.1.js"/><script>
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+
 <script>
     function getTemp() {
-        $.getJSON("temps.json", function(data) {
-			$("#temp").append(data.temp);
-			//document.getElementById("temp").innerHTML = data.temp;
-			//document.getElementById("hum").innerHTML = data.hum;
+        $.getJSON("/sense", function(data) {
+			document.getElementById("temp").innerHTML = data.temp;
+			document.getElementById("hum").innerHTML = data.hum;
     console.log("ok!");
     });
-
-
-
-    setInterval(getTemp(), 3000);
+	};
+	
+	
+    setInterval("getTemp()", 3000);
 </script>
 </body>
 </html>
