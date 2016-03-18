@@ -4,14 +4,14 @@ import cherrypy
 
 
 def getTemp ():
-    requestTemp = requests.get("https://api.spark.io/v1/devices/***REMOVED***/tempf?access_token=***REMOVED***")
+    requestTemp = requests.get("https://api.particle.io/v1/devices/<your-key-here>/tempf?access_token=<your-access-token>")
     tempf = json.loads(requestTemp.text)
     theTemp = "{:.1f}".format(tempf["result"])
     return theTemp
     # return str(tempf["result"])
     
 def getHum():
-    requestHum = requests.get("https://api.spark.io/v1/devices/***REMOVED***/humidity?access_token=***REMOVED***")
+    requestHum = requests.get("https://api.particle.io/v1/devices/<your-key-here>/humidity?access_token=<your-access-token>")
     humidity = json.loads(requestHum.text)
     theHumidity = "{:.1f}".format(humidity["result"])
     return theHumidity
